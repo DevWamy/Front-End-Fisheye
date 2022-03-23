@@ -19,6 +19,10 @@ h1 {
     margin-right: 100px;
 }
 
+a{
+    text-decoration: none;
+}
+
 .logo {
     height: 50px;
     margin-left: 100px;
@@ -57,11 +61,12 @@ h1 {
     height: 200px;
     width: 200px;
     border-radius: 50%;
-    
+    object-fit: cover;
 }
 
 .photographer_section article span {
     font-size: 10px;
+    color: black;
 }
 
 .photographer_section article p {
