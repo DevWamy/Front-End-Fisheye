@@ -13,10 +13,13 @@ function galeryFactory(data) {
   function getUserGaleryDOM() {
     const figureGalery = document.createElement("figure");
     figureGalery.classList.add(id);
+    
+    const legendGalery = document.createElement("figcaption");
     const legendTitle = document.createElement("div");
-    const legendLike = document.createElement("div");
+    
+    
     const h4Page = document.createElement("h4");
-    const like = document.createElement("i");
+    h4Page.textContent = title;
     if (image) {
       const imgPhoto = document.createElement("img");
       imgPhoto.setAttribute("src", srcMedia);
@@ -28,26 +31,15 @@ function galeryFactory(data) {
       vidPhoto.setAttribute("controls", null);
       figureGalery.appendChild(vidPhoto);
     }
-    h4Page.textContent = title;
-    //figureGalery.appendChild(legendGalery);
-    //legendGalery.appendChild(legendTitle);
+    
+    figureGalery.appendChild(legendGalery);
+    legendGalery.appendChild(legendTitle);
     legendTitle.appendChild(h4Page);
-    //legendGalery.appendChild(legendLike);
-    legendLike.appendChild(like);
+    
     return figureGalery;
   }
 
 
-  return {
-    id,
-    photographerId,
-    title,
-    image,
-    video,
-    likes,
-    date,
-    price,
-    srcMedia,
-    getUserGaleryDOM,
-  };
+
+  return {id, photographerId, title, image, video, likes, date, price, srcMedia, getUserGaleryDOM};
 }
