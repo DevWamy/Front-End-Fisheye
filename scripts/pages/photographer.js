@@ -28,6 +28,8 @@ const photographerProfilDisplay = async (photographers) => {
     // Récupère les datas des photographes
     const { photographers } = await getPhotoUsers();
     photographerProfilDisplay(photographers);
+
+    
   }
-  
+
   initPage();

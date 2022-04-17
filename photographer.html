@@ -5,6 +5,7 @@
     <meta charset="utf-8">
     <link rel="icon" type="image/png" href="assets/favicon.png">
     <link href="https://fonts.googleapis.com/css?family=DM+Sans&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/6ca9202fa2.js" crossorigin="anonymous"></script>
     <title>Fisheye - photographe </title>
   </head>
   <body>
@@ -16,12 +17,13 @@
         <button class="contact_button" onclick="displayModal()">Contactez-moi</button>
       </div>
       <div class="photograph_galery"></div>
+      
     </main>
     <div id="contact_modal">
 			<div class="modal">
 				<header>
           <h2>Contactez-moi</h2>
-          <img src="assets/icons/close.svg" onclick="closeModal()" />
+          <img src="" onclick="closeModal()" />
         </header>
 				<form>
 					<div>
@@ -32,9 +34,27 @@
 				</form>
 			</div>
 		</div>
+
+    <!--Lightbox-->
+    <section  id= "bigImg" class="lightbox hidden">
+      <button class="lightboxClose">
+        <i class="fas fa-times"></i>
+      </button>
+      <button class="lightboxNext">
+        <i class="fas fa-angle-right"></i>
+      </button>
+      <button class="lightboxPrev">
+        <i class="fas fa-angle-left"></i>
+    </button>
+     <div class="lightbox_media">
+      <!--Display targeted img here-->
+      <img id="targetedImg" src="">
+      </div>
+    </section>
     <script src="scripts/factories/galeryfactory.js"></script>
     <script src="scripts/pages/photographer.js"></script>
     <script src="scripts/pages/gallery.js"></script>
+    <script src="scripts/pages/lightbox.js"></script>
     <script src="scripts/factories/photographer.js"></script>
     <script src="scripts/utils/contactForm.js"></script>
   </body>
