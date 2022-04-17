@@ -45,23 +45,27 @@ const identifier = searchMedias.get('id');
       console.log('targetedImgFound -> ', targetedImgFound);
     // targetedImg -> ID Of targeted image
       targetedImgFound.src = imageSrc;
-
-    const element = document.getElementById("bigImg");
-    console.log(element)
-    const caroussel = element.classList.remove('hidden')
-    console.log(caroussel)
+    //Apparition de la lightbox au clic
+      const element = document.getElementById("bigImg");
+      console.log(element)
+      const caroussel = element.classList.remove('hidden')
+      console.log(caroussel)
 
     }
-    
 
     myLightBoxes.forEach((figure) =>{
       console.log(figure);
       figure.addEventListener('click', displayLightBox)
     });
 
+    
+    const closeBtn = document.querySelector(".lightboxClose");
+    closeBtn.addEventListener("click", () => {
+      document.querySelector(".lightbox").classList.add("hidden")
+    });
+    
     }
 
-    
   const initGalery = async () => {
     // Récupère les medias des photographes
     const { medias } = await getMedias();

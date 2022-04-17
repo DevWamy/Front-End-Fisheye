@@ -213,7 +213,7 @@ form input {
     display: flex;
     justify-content: space-evenly;
     flex-direction: row;
-    /*align-items: center;*/
+    
     top: 0;
     left: 0;
     width: 100%;
