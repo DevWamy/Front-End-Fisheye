@@ -56,6 +56,8 @@ const identifier = searchMedias.get('id');
       const element = document.getElementById("bigImg");
       element.classList.remove('hidden')
       currentLightboxIndex = index
+      //apparition du titre de l'image
+      document.getElementById('lightbox_name').innerText = arrayLightBoxes[currentLightboxIndex].querySelector('h4').innerText
     }
 
     myLightBoxes.forEach((figure, index) =>{
@@ -78,10 +80,12 @@ const identifier = searchMedias.get('id');
         //si cet element a pour balise img on recupere la source de cette image
         if (arrayLightBoxes[currentLightboxIndex+1].querySelector('img')){
           document.getElementById('targetedImg').src = arrayLightBoxes[currentLightboxIndex+1].querySelector('img').src
-        }
+        }/*
         else {
         //afficher video a l'ecran a la place de l'img (cacher img  ou balise a faire)
-        }
+        document.getElementById("targetedVideo").classList.remove("hidden")
+        document.getElementById("targetedImg").classList.add("hidden")
+        }*/
         // On incrémente l'index de un dans le tableau (donc une img en +)
         currentLightboxIndex +=1
         const nextImage = arrayLightBoxes[currentLightboxIndex+1];
