@@ -255,7 +255,7 @@ form input {
 
 
 .lightboxNext {
-  right: 300px;
+  right: 320px;
 }
 
   .lightboxClose {
@@ -281,7 +281,7 @@ form input {
 
 #lightbox_name {
   position: absolute;
-  bottom: -50px;
+  bottom: -35px;
   left: 365px;
   color: #911c1c;
   font-size: 24px;

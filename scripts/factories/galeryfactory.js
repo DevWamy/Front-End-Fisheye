@@ -25,6 +25,7 @@ function galeryFactory(data) {
       imgPhoto.setAttribute("src", srcMedia);
       figureGalery.appendChild(imgPhoto);
     } else {
+      
       const vidPhoto = document.createElement("video");
       vidPhoto.setAttribute("type", "video/mp4");
       vidPhoto.setAttribute("src", srcMedia);

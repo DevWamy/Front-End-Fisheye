@@ -52,6 +52,17 @@ const identifier = searchMedias.get('id');
     // targetedImg -> ID Of targeted image
       targetedImgFound.src = imageSrc;
 
+      //Ici on récupère la source de la video
+      const videoSrc = event.target.currentSrc;
+      console.log('video Src found ->', videoSrc);
+
+    //Ici on affiche la source de la video capturée
+      const targetedVideoFound = document.getElementById('targetedVideo');
+      console.log('targetedVideoFound -> ', targetedVideoFound);
+
+    // targetedVideo -> ID Of targeted video
+      targetedVideoFound.src = videoSrc;
+
     //Apparition de la lightbox au clic
       const element = document.getElementById("bigImg");
       element.classList.remove('hidden')
@@ -72,20 +83,48 @@ const identifier = searchMedias.get('id');
     });
 
     //ICI VIENT LE BOUTON NEXT
+    //La balise de class lightboxNext est la variable nextBtn
     const nextBtn = document.querySelector(".lightboxNext")
         //Lors du clic sur le bouton suivant, on recupere la source de l'image suivante
       nextBtn.addEventListener("click", () => {
         //on affiche l'element +1 du tableau des elements lightbox
         console.log(arrayLightBoxes[currentLightboxIndex+1])
-        //si cet element a pour balise img on recupere la source de cette image
-        if (arrayLightBoxes[currentLightboxIndex+1].querySelector('img')){
-          document.getElementById('targetedImg').src = arrayLightBoxes[currentLightboxIndex+1].querySelector('img').src
-        }/*
-        else {
-        //afficher video a l'ecran a la place de l'img (cacher img  ou balise a faire)
-        document.getElementById("targetedVideo").classList.remove("hidden")
-        document.getElementById("targetedImg").classList.add("hidden")
-        }*/
+        //si cet element a pour balise img ou video on recupere la source de cette image
+
+        // SI IMAGE ->
+        const imageElement = arrayLightBoxes[currentLightboxIndex+1].querySelector('img');
+
+        // SI VIDEO ->
+        const videoElement = arrayLightBoxes[currentLightboxIndex+1].querySelector('video')
+        
+        // -----
+        //On affiche 
+        console.log('getting image Element ->', { imageElement });
+        if (imageElement){
+          //Retrait de la classe hidden sur les images
+          document.getElementById("targetedImg").classList.remove("hidden");
+          //Ajout de la classe hidden sur les videos
+          document.getElementById("targetedVideo").classList.add("hidden");
+          //La source de l'element image est la source qui se trouve dans targetedIMG dans le HTML
+          document.getElementById('targetedImg').src = imageElement.src
+        } else {
+          // Mode vidéo
+          //Ce qui se trouve dans targetedVideo defini la variable targetedVideoElement
+          const targetedVideoElement = document.getElementById("targetedVideo");
+          //On retire la classe hidden de ce qui se trouve sur la vidéo parce quon a besoin que ca s'affiche
+          targetedVideoElement.classList.remove("hidden");
+          //On ajoute la classe hidden pour cacher les images
+          document.getElementById("targetedImg").classList.add("hidden");
+
+          console.log('got the video ->', { targetedVideoElement })
+        
+          console.log('videoElement -> ', { videoElement })
+          //La source videoElement est la nouvelle source de la video
+          const videoElementNewSource = videoElement.src;
+          //On change l'attribut de la video capturée par la nouvelle source
+          targetedVideoElement.setAttribute('src',videoElementNewSource)
+        }
+
         // On incrémente l'index de un dans le tableau (donc une img en +)
         currentLightboxIndex +=1
         const nextImage = arrayLightBoxes[currentLightboxIndex+1];
@@ -107,9 +146,10 @@ const identifier = searchMedias.get('id');
         //si cet element+1 a pour balise img on recupere la source de cette image
         if (arrayLightBoxes[currentLightboxIndex-1].querySelector('img')){
         document.getElementById('targetedImg').src = arrayLightBoxes[currentLightboxIndex -1].querySelector('img').src
-        }else {
+        }/*
+        else {
           //afficher video a l'ecran a la place de l'img (cacher img  ou balise a faire)
-        }
+        }*/
         // On décrémente l'index de un dans le tableau (donc une img en -)
         currentLightboxIndex -=1
         const prevImage = arrayLightBoxes[currentLightboxIndex-1];
@@ -118,7 +158,7 @@ const identifier = searchMedias.get('id');
         document.getElementById('lightbox_name').innerText = arrayLightBoxes[currentLightboxIndex].querySelector('h4').innerText
         //Au debut de toutes les images, on retourne à la derniere
         if (prevImage === undefined){
-          //Ici j'ai mis -1 sinon la première ne s'affichait pas
+          //Ici j'ai mis -1 sinon la première ne s'affiche pas
           currentLightboxIndex = arrayLightBoxes.length-1
         }
 
