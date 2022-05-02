@@ -260,8 +260,8 @@ form input {
 
   .lightboxClose {
     position: absolute;
-    top: 30px;
-    right: 325px;
+    top: 20px;
+    right: 330px;
     z-index: 12;
   }
 
