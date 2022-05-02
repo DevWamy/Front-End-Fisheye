@@ -16,10 +16,15 @@ function galeryFactory(data) {
     
     const legendGalery = document.createElement("figcaption");
     const legendTitle = document.createElement("div");
-    
+    const legendLikes = document.createElement("span")
     
     const h4Page = document.createElement("h4");
     h4Page.textContent = title;
+
+    const h5Page = document.createElement("h5");
+    h5Page.innerHTML = likes + ' <i class="fa-solid fa-heart"></i>'
+    
+
     if (image) {
       const imgPhoto = document.createElement("img");
       imgPhoto.setAttribute("src", srcMedia);
@@ -36,6 +41,10 @@ function galeryFactory(data) {
     figureGalery.appendChild(legendGalery);
     legendGalery.appendChild(legendTitle);
     legendTitle.appendChild(h4Page);
+    legendLikes.appendChild(h5Page);
+    legendTitle.appendChild(legendLikes);
+    
+    
     
     return figureGalery;
   }

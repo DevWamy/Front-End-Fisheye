@@ -87,15 +87,19 @@ const identifier = searchMedias.get('id');
     const nextBtn = document.querySelector(".lightboxNext")
         //Lors du clic sur le bouton suivant, on recupere la source de l'image suivante
       nextBtn.addEventListener("click", () => {
+        currentLightboxIndex +=1
         //on affiche l'element +1 du tableau des elements lightbox
-        console.log(arrayLightBoxes[currentLightboxIndex+1])
+        if (arrayLightBoxes[currentLightboxIndex] === undefined){
+          //Ici j'ai mis -1 sinon la première ne s'affichait pas
+          currentLightboxIndex = 0
+        }
         //si cet element a pour balise img ou video on recupere la source de cette image
 
         // SI IMAGE ->
-        const imageElement = arrayLightBoxes[currentLightboxIndex+1].querySelector('img');
+        const imageElement = arrayLightBoxes[currentLightboxIndex].querySelector('img');
 
         // SI VIDEO ->
-        const videoElement = arrayLightBoxes[currentLightboxIndex+1].querySelector('video')
+        const videoElement = arrayLightBoxes[currentLightboxIndex].querySelector('video')
         
         // -----
         //On affiche 
@@ -126,16 +130,11 @@ const identifier = searchMedias.get('id');
         }
 
         // On incrémente l'index de un dans le tableau (donc une img en +)
-        currentLightboxIndex +=1
-        const nextImage = arrayLightBoxes[currentLightboxIndex+1];
-        console.log(nextImage)
+        
         //affichage du titre de chaque image
         document.getElementById('lightbox_name').innerText = arrayLightBoxes[currentLightboxIndex].querySelector('h4').innerText
         //A la fin de toutes les images, on retourne à la première
-      if (nextImage === undefined){
-        //Ici j'ai mis -1 sinon la première ne s'affichait pas
-        currentLightboxIndex =-1
-      }
+      
       })
       console.log(nextBtn)
 
@@ -144,10 +143,16 @@ const identifier = searchMedias.get('id');
       //Lors du clic sur le bouton precedent, on recupere la source de l'image precedente
       prevBtn.addEventListener("click", () => {
         //si cet element+1 a pour balise img on recupere la source de cette image
-        const imageElement = arrayLightBoxes[currentLightboxIndex-1].querySelector('img');
+        currentLightboxIndex-=1
+        if (arrayLightBoxes[currentLightboxIndex] === undefined){
+          //Ici j'ai mis -1 sinon la première ne s'affichait pas a revoir
+          currentLightboxIndex = arrayLightBoxes.length - 1
+        }
+        const imageElement = arrayLightBoxes[currentLightboxIndex].querySelector('img');
+        
 
         // SI VIDEO ->
-        const videoElement = arrayLightBoxes[currentLightboxIndex-1].querySelector('video')
+        const videoElement = arrayLightBoxes[currentLightboxIndex].querySelector('video')
         
         // -----
         //On affiche 
@@ -181,16 +186,12 @@ const identifier = searchMedias.get('id');
           //afficher video a l'ecran a la place de l'img (cacher img  ou balise a faire)
         }*/
         // On décrémente l'index de un dans le tableau (donc une img en -)
-        currentLightboxIndex -=1
-        const prevImage = arrayLightBoxes[currentLightboxIndex-1];
-        console.log(prevImage)
+        
+      
         //affichage du titre de chaque image
         document.getElementById('lightbox_name').innerText = arrayLightBoxes[currentLightboxIndex].querySelector('h4').innerText
         //Au debut de toutes les images, on retourne à la derniere
-        if (prevImage === undefined){
-          //Ici j'ai mis -1 sinon la première ne s'affiche pas
-          currentLightboxIndex = arrayLightBoxes.length-1
-        }
+        
 
       })
       console.log(prevBtn)

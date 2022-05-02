@@ -206,6 +206,14 @@ form input {
     margin-top: 5px;
     }
 
+  .photograph_galery figure h5 {
+    color: #911c1c;
+    font-size: 24px;
+    font-weight: normal;
+    margin-bottom: 30px;
+    margin-top: 5px;
+    }
+
     /* LIGHTBOX */
 
   .lightbox {
