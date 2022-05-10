@@ -17,21 +17,46 @@ const identifier = searchMedias.get('id');
         const mediasFilter = medias.filter(
       (media) => media.photographerId === parseInt(identifier)
     );
-        
+        //C'EST ICI QUE JE TRAVAILLE POUR LE COMPTEUR DE LIKE
         mediasFilter.forEach((media) => {
             const photographerModelGalery = galeryFactory(media);
             const userGalery = photographerModelGalery.getUserGaleryDOM();
-            photographGalery.appendChild(userGalery);    
-      
+            photographGalery.appendChild(userGalery); 
     });
+
+      console.log(photographGalery.querySelectorAll("h5"))
+      photographGalery.querySelectorAll("h5").forEach((like) =>{
+      //console.log(like)
+      //On recupère tous les spans avec un querySelectorAll
+      const spans = photographGalery.querySelectorAll('h5 > span')
+      console.log(spans)
+      like.addEventListener("click", ()=>{
+        console.log("like cliqué")
+        console.log(like.querySelector('span').innerText)
+        numberOfLikes = like.querySelector('span').innerText++
+        console.log(numberOfLikes)
+        let counter = like.querySelector('span').innerText
+        //counter +=numberOfLikes
+        console.log(counter)
+        //On crée une variable qui nous servira a additionner les valeurs
+        let total = 0
+        // On itère sur chaque span récupéré avec un forEach,
+        // On transforme le textContent en nombre car c'est une string au départ
+        // On additionne sa valeur au total
+        spans.forEach(span => total += parseInt(span.textContent, 10))
+        // On affiche la valeur totale quelque part dans le DOM
+      document.querySelector('p').textContent = `total : ${total}`
+        
+      }) 
+    })
   };
-  
+  //Lightbox
   const lightboxInit = () => {
     // Ici je récupère la section contenant les données qui nous intéressent
     let mediasToGet = document.querySelector('.photograph_galery')
     console.log(mediasToGet)
     // Ici je  récupère les images dans le tableau
-    let myLightBoxes = document.querySelectorAll('figure');
+    let myLightBoxes = document.querySelectorAll('figure > div');
     console.log(myLightBoxes)
     // Ici je transforme ce que je vient de recuperer en tableau
     let arrayLightBoxes = Array.from(myLightBoxes)
@@ -39,8 +64,9 @@ const identifier = searchMedias.get('id');
 
     //Ici au clic, l'event s'affiche dans la console
     const displayLightBox = (event, index) => {
-      console.log('clicked on a lightbox, event target ->', event.target);
-
+      console.log('clicked on a lightbox, event target ->', event.target , event.currentTarget);
+      //PEUT ETRE ICI???
+    
     //Ici on récupère la source de l'image
       const imageSrc = event.target.currentSrc;
       console.log('image Src found ->', imageSrc);
@@ -90,7 +116,7 @@ const identifier = searchMedias.get('id');
         currentLightboxIndex +=1
         //on affiche l'element +1 du tableau des elements lightbox
         if (arrayLightBoxes[currentLightboxIndex] === undefined){
-          //Ici j'ai mis -1 sinon la première ne s'affichait pas
+        //si l'element est indefini alors l'index courant vaut 0
           currentLightboxIndex = 0
         }
         //si cet element a pour balise img ou video on recupere la source de cette image
@@ -101,7 +127,6 @@ const identifier = searchMedias.get('id');
         // SI VIDEO ->
         const videoElement = arrayLightBoxes[currentLightboxIndex].querySelector('video')
         
-        // -----
         //On affiche 
         console.log('getting image Element ->', { imageElement });
         if (imageElement){
@@ -128,8 +153,6 @@ const identifier = searchMedias.get('id');
           //On change l'attribut de la video capturée par la nouvelle source
           targetedVideoElement.setAttribute('src',videoElementNewSource)
         }
-
-        // On incrémente l'index de un dans le tableau (donc une img en +)
         
         //affichage du titre de chaque image
         document.getElementById('lightbox_name').innerText = arrayLightBoxes[currentLightboxIndex].querySelector('h4').innerText
@@ -145,7 +168,8 @@ const identifier = searchMedias.get('id');
         //si cet element+1 a pour balise img on recupere la source de cette image
         currentLightboxIndex-=1
         if (arrayLightBoxes[currentLightboxIndex] === undefined){
-          //Ici j'ai mis -1 sinon la première ne s'affichait pas a revoir
+        //Au debut de toutes les images, on retourne à la derniere
+        //si l'element est indefini alors l'index courant vaut la taille du tableau de la ligthbox - 1
           currentLightboxIndex = arrayLightBoxes.length - 1
         }
         const imageElement = arrayLightBoxes[currentLightboxIndex].querySelector('img');
@@ -181,18 +205,10 @@ const identifier = searchMedias.get('id');
           //On change l'attribut de la video capturée par la nouvelle source
           targetedVideoElement.setAttribute('src',videoElementNewSource)
         }
-        /*
-        else {
-          //afficher video a l'ecran a la place de l'img (cacher img  ou balise a faire)
-        }*/
-        // On décrémente l'index de un dans le tableau (donc une img en -)
-        
       
         //affichage du titre de chaque image
         document.getElementById('lightbox_name').innerText = arrayLightBoxes[currentLightboxIndex].querySelector('h4').innerText
-        //Au debut de toutes les images, on retourne à la derniere
         
-
       })
       console.log(prevBtn)
     }

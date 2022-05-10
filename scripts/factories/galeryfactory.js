@@ -11,40 +11,41 @@ function galeryFactory(data) {
   console.log();
 
   function getUserGaleryDOM() {
+    const divImg = document.createElement("div")
     const figureGalery = document.createElement("figure");
     figureGalery.classList.add(id);
     
     const legendGalery = document.createElement("figcaption");
     const legendTitle = document.createElement("div");
     const legendLikes = document.createElement("span")
+    console.log(legendLikes)
     
     const h4Page = document.createElement("h4");
     h4Page.textContent = title;
 
     const h5Page = document.createElement("h5");
-    h5Page.innerHTML = likes + ' <i class="fa-solid fa-heart"></i>'
+    console.log(h5Page)
+    h5Page.innerHTML = "<span>" + likes + '</span> <i class="fa-solid fa-heart"></i>' + '<p></p>'
     
 
     if (image) {
       const imgPhoto = document.createElement("img");
       imgPhoto.setAttribute("src", srcMedia);
-      figureGalery.appendChild(imgPhoto);
+      divImg.appendChild(imgPhoto);
     } else {
       
       const vidPhoto = document.createElement("video");
       vidPhoto.setAttribute("type", "video/mp4");
       vidPhoto.setAttribute("src", srcMedia);
       vidPhoto.setAttribute("controls", null);
-      figureGalery.appendChild(vidPhoto);
+      divImg.appendChild(vidPhoto);
     }
-    
+    figureGalery.appendChild(divImg);
     figureGalery.appendChild(legendGalery);
     legendGalery.appendChild(legendTitle);
     legendTitle.appendChild(h4Page);
     legendLikes.appendChild(h5Page);
     legendTitle.appendChild(legendLikes);
-    
-    
     
     return figureGalery;
   }

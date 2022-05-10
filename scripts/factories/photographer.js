@@ -56,7 +56,7 @@ function photographerFactory(data) {
         articlePage.appendChild(imgPage);
 
         return (articlePage);
-      }
+    }
 
     return { name, picture, city, country, tagline, price, getUserCardDOM, getUserCardDOMPage }
 }
