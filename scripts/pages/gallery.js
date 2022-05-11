@@ -94,7 +94,7 @@ const identifier = searchMedias.get('id');
       element.classList.remove('hidden')
       currentLightboxIndex = index
       //apparition du titre de l'image
-      document.getElementById('lightbox_name').innerText = arrayLightBoxes[currentLightboxIndex].querySelector('h4').innerText
+      document.getElementById('lightbox_name').innerText = arrayLightBoxes[currentLightboxIndex].parentElement.querySelector('h4').innerText
     }
 
     myLightBoxes.forEach((figure, index) =>{
@@ -155,7 +155,7 @@ const identifier = searchMedias.get('id');
         }
         
         //affichage du titre de chaque image
-        document.getElementById('lightbox_name').innerText = arrayLightBoxes[currentLightboxIndex].querySelector('h4').innerText
+        document.getElementById('lightbox_name').innerText = arrayLightBoxes[currentLightboxIndex].parentElement.querySelector('h4').innerText
         //A la fin de toutes les images, on retourne à la première
       
       })
@@ -207,7 +207,7 @@ const identifier = searchMedias.get('id');
         }
       
         //affichage du titre de chaque image
-        document.getElementById('lightbox_name').innerText = arrayLightBoxes[currentLightboxIndex].querySelector('h4').innerText
+        document.getElementById('lightbox_name').innerText = arrayLightBoxes[currentLightboxIndex].parentElement.querySelector('h4').innerText
         
       })
       console.log(prevBtn)
