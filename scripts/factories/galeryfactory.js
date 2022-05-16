@@ -25,7 +25,8 @@ function galeryFactory(data) {
 
     const h5Page = document.createElement("h5");
     console.log(h5Page)
-    h5Page.innerHTML = "<span>" + likes + '</span> <i class="fa-solid fa-heart"></i>' + '<p></p>'
+    //JE NE SAIS PAS SI JE DOIS L'ECRIRE COMME CA
+    h5Page.innerHTML = "<span>" + likes + '</span> <i class="fa-solid fa-heart"></i>'
     
 
     if (image) {

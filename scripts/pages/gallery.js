@@ -14,6 +14,7 @@ const identifier = searchMedias.get('id');
   
     const photographGaleryDisplay = async (medias) => {
         const photographGalery = document.querySelector('.photograph_galery');
+        console.log(photographGalery)
         const mediasFilter = medias.filter(
       (media) => media.photographerId === parseInt(identifier)
     );
@@ -23,20 +24,26 @@ const identifier = searchMedias.get('id');
             const userGalery = photographerModelGalery.getUserGaleryDOM();
             photographGalery.appendChild(userGalery); 
     });
-
+      //Afficher les likes (nbre de likes et coeur)
       console.log(photographGalery.querySelectorAll("h5"))
       photographGalery.querySelectorAll("h5").forEach((like) =>{
       //console.log(like)
-      //On recupère tous les spans avec un querySelectorAll
+      //On recupère tous les spans qui se trouvent dans h5 avec un querySelectorAll 
       const spans = photographGalery.querySelectorAll('h5 > span')
       console.log(spans)
+      //Lorsque l'on clique sur le coeur:
       like.addEventListener("click", ()=>{
+        //On verifie que le like est cliqué
         console.log("like cliqué")
+        //On affiche le nombre de like
         console.log(like.querySelector('span').innerText)
+        //On incrémente les likes au clic
         numberOfLikes = like.querySelector('span').innerText++
+        //On verifie en affichant
         console.log(numberOfLikes)
+        //On crée un compteur avec chaque span
         let counter = like.querySelector('span').innerText
-        //counter +=numberOfLikes
+        //On l'affiche
         console.log(counter)
         //On crée une variable qui nous servira a additionner les valeurs
         let total = 0
@@ -44,11 +51,20 @@ const identifier = searchMedias.get('id');
         // On transforme le textContent en nombre car c'est une string au départ
         // On additionne sa valeur au total
         spans.forEach(span => total += parseInt(span.textContent, 10))
-        // On affiche la valeur totale quelque part dans le DOM
-      document.querySelector('p').textContent = `total : ${total}`
+        // On affiche la valeur totale  dans le DOM
+        //JE NE SAIS PAS SI JE DOIS L'ECRIRE COMME CA
+        document.querySelector(".total").innerText = total
         
       }) 
     })
+      const spans = document.querySelectorAll('h5 > span')
+      console.log(spans)
+      let total = 0
+        // On itère sur chaque span récupéré avec un forEach,
+        // On transforme le textContent en nombre car c'est une string au départ
+        // On additionne sa valeur au total
+        spans.forEach(span => total += parseInt(span.textContent, 10))
+        document.querySelector(".total").innerText = total
   };
   //Lightbox
   const lightboxInit = () => {

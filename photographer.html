@@ -14,24 +14,47 @@
     </header>
     <main id="main">
       <div class="photograph_header">
-        <button class="contact_button" onclick="displayModal()">Contactez-moi</button>
+        <button class="contact_button modal-btn" >Contactez-moi</button>
       </div>
       <div class="photograph_galery"></div>
-      
     </main>
-    <div id="contact_modal">
-			<div class="modal">
-				<header>
-          <h2>Contactez-moi</h2>
-          <img src="" onclick="closeModal()" />
-        </header>
-				<form>
-					<div>
-						<label>Prénom</label>
-						<input />
-					</div>
-          <button class="contact_button">Envoyer</button>
-				</form>
+    <!--THANKS MODAL-->
+    <div class="bground" id="bgroundClose">
+      <div class="content">
+        <div class="close" id="formClose">
+        </div>
+        <div class="content content--close" id="formCloseContent">
+          <a href="index.html" class="close" id="closingMessage"></a>
+          <p>Merci, votre message <br> a bien été transmis</p>
+          <a href="index.html" class="btn-submit button" id="closeForm">Fermer</a>
+        </div>
+				<!--MODAL-->
+        <div class="modal-body" id="modalClose">
+          <form class="form" name="reserve" action="#" method="post">
+            <div class="formData" id="contact">Contactez-moi <br>
+              <div>Photographer name</div>
+              <label for="first">Prénom</label><br>
+              <input class="text-control" type="text" id="first" name="first" autocomplete="off"/><br>
+              <p class="errorBtn" id="errorName"></p>
+            </div>
+            <div class="formData">
+              <label for="last">Nom</label><br>
+              <input class="text-control" type="text" id="last" name="last" autocomplete="off"/><br>
+              <p class="errorBtn" id="errorLastName"></p>
+            </div>
+            <div class="formData">
+              <label for="email">E-mail</label><br>
+              <input class="text-control" type="email" id="email" name="email" autocomplete="off"/><br>
+              <p class="errorBtn" id="errorMail"></p>
+            </div>
+            <div class="formData">
+              <label for="message">Message</label><br>
+              <textarea class="text-control" id="message" name="message" autocomplete="off"></textarea>
+              <p class="errorBtn" id="errorMessage"></p>
+            </div>
+            <input class="btn-submit button" type="submit" id="go-btn" value="Envoyer"/>
+            <p class="errorBtn" id="error"></p>
+          </form>
 			</div>
 		</div>
 
@@ -54,6 +77,9 @@
       </div>
       <div id="lightbox_name"></div>
     </section>
+    </div>
+    <footer>
+      <p><span class="total"></span><i  class="fa-solid fa-heart"></i> €/ jour</p></footer>
     <script src="scripts/factories/galeryfactory.js"></script>
     <script src="scripts/pages/photographer.js"></script>
     <script src="scripts/pages/gallery.js"></script>
