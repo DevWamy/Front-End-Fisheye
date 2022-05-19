@@ -19,11 +19,9 @@ function photographerFactory(data) {
 
         const span = document.createElement('span');
         span.textContent = tagline;
-//A VOIR
+
         const p = document.createElement('p');
         p.textContent = price + "€/jour";
-        /*p.setAttribute("price", price)
-        console.log(p)*/
         a.appendChild(article);
         article.appendChild(img);
         article.appendChild(h2);
@@ -48,10 +46,6 @@ function photographerFactory(data) {
         const h3Page = document.createElement( 'h3' );
         h3Page.textContent = tagline;
 
-        const globalPrice = document.createElement('h6')
-        globalPrice.textContent = price;
-        console.log(globalPrice)
-
         const imgPage = document.createElement( 'img' );
         imgPage.setAttribute( 'src', picture );
         
@@ -59,9 +53,8 @@ function photographerFactory(data) {
         divProfil.appendChild(h1Page);
         divProfil.appendChild(h2Page);
         divProfil.appendChild(h3Page);
-        divProfil.appendChild(globalPrice);
         articlePage.appendChild(imgPage);
-        
+
         return (articlePage);
     }
 

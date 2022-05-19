@@ -18,9 +18,6 @@
       </div>
       <div class="photograph_galery"></div>
     </main>
-    <footer>
-      <p><span class="total"></span> <i  class="fa-solid fa-heart"></i> €/jour</p>
-    </footer>
     <!--THANKS MODAL-->
     <div class="bground" id="bgroundClose">
       <div class="content">
@@ -36,7 +33,6 @@
           <form class="form" name="reserve" action="#" method="post">
             <div class="formData" id="contact">Contactez-moi <br>
               <div>Photographer name</div>
-              <div class="formData">
               <label for="first">Prénom</label><br>
               <input class="text-control" type="text" id="first" name="first" autocomplete="off"/><br>
               <p class="errorBtn" id="errorName"></p>
@@ -63,26 +59,27 @@
 		</div>
 
     <!--Lightbox-->
-      <section  id= "bigImg" class="lightbox hidden">
-        <button class="lightboxClose">
-          <i class="fas fa-times"></i>
-        </button>
-        <button class="lightboxNext">
-          <i class="fas fa-angle-right"></i>
-        </button>
-        <button class="lightboxPrev">
-          <i class="fas fa-angle-left"></i>
-        </button>
-        <div class="lightbox_media">
-        <!--Display targeted img here-->
-        <img id="targetedImg" src="">
-        <video id="targetedVideo" class="hidden" type="video/mp4" src="" controls>
-        </video>
-        </div>
-        <div id="lightbox_name"></div>
-      </section>
+    <section  id= "bigImg" class="lightbox hidden">
+      <button class="lightboxClose">
+        <i class="fas fa-times"></i>
+      </button>
+      <button class="lightboxNext">
+        <i class="fas fa-angle-right"></i>
+      </button>
+      <button class="lightboxPrev">
+        <i class="fas fa-angle-left"></i>
+      </button>
+      <div class="lightbox_media">
+      <!--Display targeted img here-->
+      <img id="targetedImg" src="">
+      <video id="targetedVideo" class="hidden" type="video/mp4" src="" controls>
+      </video>
+      </div>
+      <div id="lightbox_name"></div>
+    </section>
     </div>
-    
+    <footer>
+      <p><span class="total"></span><i  class="fa-solid fa-heart"></i> €/ jour</p></footer>
     <script src="scripts/factories/galeryfactory.js"></script>
     <script src="scripts/pages/photographer.js"></script>
     <script src="scripts/pages/gallery.js"></script>

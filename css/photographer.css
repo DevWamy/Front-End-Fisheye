@@ -18,8 +18,6 @@
     cursor: pointer;
 }
 
-/* MODAL FORM */
-
 .button {
   background: #fe142f;
   margin-top: 8px;
@@ -274,8 +272,8 @@ input {
 
 .btn-submit,
 .btn-signup {
-  height: 69px;
   background: #901C1C;
+  /*display: block;*/
   margin: 0 auto;
   border-radius: 10px;
   font-size: 18px;
@@ -422,7 +420,7 @@ input {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     gap: 70px;
-    margin-top: 60px;
+    margin-top: 100px;
   }
   
   .photographer_section article {
@@ -435,7 +433,7 @@ input {
   
   .photographer_section article h2 {
     color: #D3573C;
-    font-size: 38px;
+    font-size: 36px;
     font-weight: 400;
     margin-bottom: 0px;
   }
@@ -444,7 +442,7 @@ input {
     color: #901C1C;
     margin: 0px;
     font-weight: 400;
-    font-size: 16px;
+    font-size: 13px;
   }
   
   .photographer_section article img {
@@ -455,14 +453,14 @@ input {
   }
   
   .photographer_section article span {
-    font-size: 14px;
+    font-size: 10px;
     color: black;
   }
   
   .photographer_section article p {
     color: #757575;
     margin-top: 0px;
-    font-size: 12px;
+    font-size: 9px;
   }
   
   .photograph_galery {

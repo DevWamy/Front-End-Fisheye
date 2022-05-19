@@ -14,7 +14,7 @@ const modalBtn = document.querySelectorAll(".modal-btn");
 const formData = document.querySelectorAll(".formData");
 
 // Chargement de l'évènement modal
-modalBtn.btn.addEventListener("click", launchModal);
+modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
 
 // Chargement du formulaire modal
 function launchModal() {

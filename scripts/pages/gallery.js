@@ -5,30 +5,26 @@ const getMedias = async() => {
     const mediaData = await data.json();
     const media = mediaData.media;
     console.log(media)
-    /*const photographersData = mediaData.photographers
-    console.log(photographersData)*/
-    
     return {medias: [...media]}
-    
 }
   
 const searchMedias = new URLSearchParams(window.location.search);
 const identifier = searchMedias.get('id');
 
-
+  
     const photographGaleryDisplay = async (medias) => {
         const photographGalery = document.querySelector('.photograph_galery');
         console.log(photographGalery)
         const mediasFilter = medias.filter(
       (media) => media.photographerId === parseInt(identifier)
     );
-        // Compteur de like
+        //C'EST ICI QUE JE TRAVAILLE POUR LE COMPTEUR DE LIKE
         mediasFilter.forEach((media) => {
             const photographerModelGalery = galeryFactory(media);
             const userGalery = photographerModelGalery.getUserGaleryDOM();
             photographGalery.appendChild(userGalery); 
     });
-      //Afficher les likes (nombre de likes et coeur)
+      //Afficher les likes (nbre de likes et coeur)
       console.log(photographGalery.querySelectorAll("h5"))
       photographGalery.querySelectorAll("h5").forEach((like) =>{
       //console.log(like)
@@ -56,6 +52,7 @@ const identifier = searchMedias.get('id');
         // On additionne sa valeur au total
         spans.forEach(span => total += parseInt(span.textContent, 10))
         // On affiche la valeur totale  dans le DOM
+        //JE NE SAIS PAS SI JE DOIS L'ECRIRE COMME CA
         document.querySelector(".total").innerText = total
         
       }) 
@@ -68,7 +65,6 @@ const identifier = searchMedias.get('id');
         // On additionne sa valeur au total
         spans.forEach(span => total += parseInt(span.textContent, 10))
         document.querySelector(".total").innerText = total
-        
   };
   //Lightbox
   const lightboxInit = () => {
@@ -85,7 +81,8 @@ const identifier = searchMedias.get('id');
     //Ici au clic, l'event s'affiche dans la console
     const displayLightBox = (event, index) => {
       console.log('clicked on a lightbox, event target ->', event.target , event.currentTarget);
-      
+      //PEUT ETRE ICI???
+    
     //Ici on récupère la source de l'image
       const imageSrc = event.target.currentSrc;
       console.log('image Src found ->', imageSrc);
