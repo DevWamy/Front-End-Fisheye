@@ -14,7 +14,7 @@ const modalBtn = document.querySelectorAll(".modal-btn");
 const formData = document.querySelectorAll(".formData");
 
 // Chargement de l'évènement modal
-modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
+modalBtn.btn.addEventListener("click", launchModal);
 
 // Chargement du formulaire modal
 function launchModal() {
@@ -52,8 +52,8 @@ const validateIdentity =  (inputName, errorField, errorMessage) => {
 
         });
 }
-validateIdentity("first", "errorName", "Veuillez entrer 2 caractères minimum, sans chiffres, ni caractères spéciaux pour le champ du prénom !");
-validateIdentity("last", "errorLastName", "Veuillez entrer 2 caractères minimum, sans chiffres, ni caractères spéciaux pour le champ du nom !")
+validateIdentity("first", "errorName", "Veuillez entrer 2 caractères minimum, sans chiffres, ni caractères spéciaux pour le champ  prénom !");
+validateIdentity("last", "errorLastName", "Veuillez entrer 2 caractères minimum, sans chiffres, ni caractères spéciaux pour le champ  nom !")
 
 //Vérification de l'email
 document.getElementById("email").addEventListener("input", function(){

@@ -1,5 +1,6 @@
 function galeryFactory(data) {
   const { id, photographerId, title, image, video, likes, date, price } = data;
+  console.log(data)
 
   let srcMedia = `./assets/images/${photographerId}/`;
   if (image) {
@@ -23,10 +24,13 @@ function galeryFactory(data) {
     const h4Page = document.createElement("h4");
     h4Page.textContent = title;
 
+    /*const pricePerDay = document.createElement("h6")
+    console.log(pricePerDay)*/
+
     const h5Page = document.createElement("h5");
     console.log(h5Page)
-    //JE NE SAIS PAS SI JE DOIS L'ECRIRE COMME CA
-    h5Page.innerHTML = "<span>" + likes + '</span> <i class="fa-solid fa-heart"></i>'
+    //Affichage des likes sur la page
+    h5Page.innerHTML = '<span>' + likes + '</span> <i class="fa-solid fa-heart"></i>' 
     
 
     if (image) {
