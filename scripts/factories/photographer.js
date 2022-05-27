@@ -33,18 +33,21 @@ function photographerFactory(data) {
     }
 
     function getUserCardDOMPage() {
-        const articlePage = document.createElement( 'article' );
+        const articlePage = document.createElement('article');
 
-        const divProfil = document.createElement( 'div' );
+        const divProfil = document.createElement('div');
 
-        const h1Page = document.createElement( 'h1' );
+        const h1Page = document.createElement('h1');
         h1Page.textContent = name;
 
-        const h2Page = document.createElement( 'h2' );
+        const h2Page = document.createElement('h2');
         h2Page.textContent = city + ", " + country;
 
-        const h3Page = document.createElement( 'h3' );
+        const h3Page = document.createElement('h3');
         h3Page.textContent = tagline;
+
+        const globalPrice = document.createElement('h6')
+        globalPrice.textContent = price;
 
         const imgPage = document.createElement( 'img' );
         imgPage.setAttribute( 'src', picture );
@@ -53,6 +56,7 @@ function photographerFactory(data) {
         divProfil.appendChild(h1Page);
         divProfil.appendChild(h2Page);
         divProfil.appendChild(h3Page);
+        divProfil.appendChild(globalPrice)
         articlePage.appendChild(imgPage);
 
         return (articlePage);

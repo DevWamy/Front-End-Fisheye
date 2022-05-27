@@ -65,6 +65,7 @@ const identifier = searchMedias.get('id');
         // On additionne sa valeur au total
         spans.forEach(span => total += parseInt(span.textContent, 10))
         document.querySelector(".total").innerText = total
+        document.querySelector(".price").innerText = document.querySelector("article h6").innerText
   };
   //Lightbox
   const lightboxInit = () => {
@@ -232,6 +233,9 @@ const identifier = searchMedias.get('id');
   const initGalery = async () => {
     // Récupère les medias des photographes
     const { medias } = await getMedias();
+    console.log(medias.sort((a,b) => {
+      return a.likes - b.likes
+    }))
     photographGaleryDisplay(medias);
     lightboxInit()
   }

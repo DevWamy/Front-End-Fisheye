@@ -13,6 +13,8 @@ const modalbg = document.querySelector(".bground");
 const modalBtn = document.querySelectorAll(".modal-btn");
 const formData = document.querySelectorAll(".formData");
 
+
+
 // Chargement de l'évènement modal
 modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
 

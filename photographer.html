@@ -16,6 +16,23 @@
       <div class="photograph_header">
         <button class="contact_button modal-btn" >Contactez-moi</button>
       </div>
+      <!--TRI-->
+      <nav class="menu"> 
+        <span class="title">Trier par </span>
+        <ul id="menu">
+          <li class="menu_deroulant">
+              <a href="#" id="pop">Popularité
+                  <span id="chevron">
+                      <i class="fas fa-chevron-up"></i>
+                  </span>
+              </a>
+              <ul class="sous_menu">
+                  <li id="date"><a href="#">Date</a></li>
+                  <li><a href="#">Titre</a></li>
+              </ul>
+          </li>
+      </ul>
+      </nav>
       <div class="photograph_galery"></div>
     </main>
     <!--THANKS MODAL-->
@@ -55,6 +72,7 @@
             <input class="btn-submit button" type="submit" id="go-btn" value="Envoyer"/>
             <p class="errorBtn" id="error"></p>
           </form>
+        </div>
 			</div>
 		</div>
 
@@ -79,7 +97,8 @@
     </section>
     </div>
     <footer>
-      <p><span class="total"></span><i  class="fa-solid fa-heart"></i> €/ jour</p></footer>
+      <p><span class="total"></span> <i  class="fa-solid fa-heart"></i><span class="price"></span> €/ jour</p>
+    </footer>
     <script src="scripts/factories/galeryfactory.js"></script>
     <script src="scripts/pages/photographer.js"></script>
     <script src="scripts/pages/gallery.js"></script>
