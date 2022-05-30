@@ -52,7 +52,6 @@ const identifier = searchMedias.get('id');
         // On additionne sa valeur au total
         spans.forEach(span => total += parseInt(span.textContent, 10))
         // On affiche la valeur totale  dans le DOM
-        //JE NE SAIS PAS SI JE DOIS L'ECRIRE COMME CA
         document.querySelector(".total").innerText = total
         
       }) 
@@ -65,7 +64,9 @@ const identifier = searchMedias.get('id');
         // On additionne sa valeur au total
         spans.forEach(span => total += parseInt(span.textContent, 10))
         document.querySelector(".total").innerText = total
+        //On recupere le prix et on l'affiche sur la page
         document.querySelector(".price").innerText = document.querySelector("article h6").innerText
+        document.querySelector(".name").innerText = document.querySelector("div h1").innerText
   };
   //Lightbox
   const lightboxInit = () => {
@@ -82,7 +83,6 @@ const identifier = searchMedias.get('id');
     //Ici au clic, l'event s'affiche dans la console
     const displayLightBox = (event, index) => {
       console.log('clicked on a lightbox, event target ->', event.target , event.currentTarget);
-      //PEUT ETRE ICI???
     
     //Ici on récupère la source de l'image
       const imageSrc = event.target.currentSrc;
