@@ -18,14 +18,13 @@ function galeryFactory(data) {
     const legendGalery = document.createElement("figcaption");
     const legendTitle = document.createElement("div");
     const legendLikes = document.createElement("span")
-    console.log(legendLikes)
     
     const h4Page = document.createElement("h4");
     h4Page.textContent = title;
 
     const h5Page = document.createElement("h5");
-    console.log(h5Page)
-    //JE NE SAIS PAS SI JE DOIS L'ECRIRE COMME CA
+    
+    //Affichage des likes
     h5Page.innerHTML = "<span>" + likes + '</span> <i class="fa-solid fa-heart"></i>'
     
 
