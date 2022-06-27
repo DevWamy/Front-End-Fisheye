@@ -51,8 +51,7 @@ document.getElementById('email').addEventListener('input', function () {
     if (regexMail.test(this.value) === false) {
         this.style.color = 'red';
         document.getElementById('errorMail').style.display = 'block';
-        document.getElementById('errorMail').innerHTML =
-            'Veuillez entrer une adresse mail valide !';
+        document.getElementById('errorMail').innerHTML = 'Veuillez entrer une adresse mail valide !';
     } else if (regexMail.test(this.value) === true) {
         document.getElementById('errorMail').style.display = 'none';
         this.style.border = 'unset';

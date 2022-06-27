@@ -8,6 +8,7 @@ const getMedias = async () => {
     //On retourne le tableau media qui se trouve dans medias
     return { medias: [...media] };
 };
+
 //TRI //
 //On selectionne nos trois options
 const currentOpt = document.querySelector('.currentOpt');
@@ -62,6 +63,7 @@ menuElements.forEach((element) => {
         //On affiche les medias
         photographGaleryDisplay(medias);
         //On initialise la lightbox
+        currentLightboxIndex = 0;
         lightboxInit();
     });
 });
@@ -73,9 +75,7 @@ const photographGaleryDisplay = async (medias) => {
     //On recupère les elements qui se trouvent dans la section de classe photograph_gallery que l'on met dans une constante
     const photographGalery = document.querySelector('.photograph_galery');
 
-    const mediasFilter = medias.filter(
-        (media) => media.photographerId === parseInt(identifier),
-    );
+    const mediasFilter = medias.filter((media) => media.photographerId === parseInt(identifier));
     // COMPTEUR DE LIKE
     //Pour chaque media de mediasFilter
     mediasFilter.forEach((media) => {
@@ -117,11 +117,10 @@ const photographGaleryDisplay = async (medias) => {
     spans.forEach((span) => (total += parseInt(span.textContent, 10)));
     document.querySelector('.total').innerText = total;
     //On recupere le prix et on l'affiche sur la page
-    document.querySelector('.price').innerText =
-        document.querySelector('article h6').innerText;
-    document.querySelector('.name').innerText =
-        document.querySelector('div h1').innerText;
+    document.querySelector('.price').innerText = document.querySelector('article h6').innerText;
+    document.querySelector('.name').innerText = document.querySelector('div h1').innerText;
 };
+
 //Lightbox
 const lightboxInit = () => {
     // Ici on récupère la section contenant les données qui nous intéressent
@@ -130,6 +129,7 @@ const lightboxInit = () => {
     let myLightBoxes = document.querySelectorAll('figure > div');
     // Ici on transforme ce que je vient de recuperer en tableau
     let arrayLightBoxes = Array.from(myLightBoxes);
+    console.log(arrayLightBoxes);
 
     //Au clic, l'event s'affiche dans la console
     const displayLightBox = (event, index) => {
@@ -151,9 +151,7 @@ const lightboxInit = () => {
         currentLightboxIndex = index;
         //apparition du titre de l'image
         document.getElementById('lightbox_name').innerText =
-            arrayLightBoxes[currentLightboxIndex].parentElement.querySelector(
-                'h4',
-            ).innerText;
+            arrayLightBoxes[currentLightboxIndex].parentElement.querySelector('h4').innerText;
     };
 
     myLightBoxes.forEach((figure, index) => {
@@ -212,9 +210,7 @@ const lightboxInit = () => {
 
         //affichage du titre de chaque image
         document.getElementById('lightbox_name').innerText =
-            arrayLightBoxes[currentLightboxIndex].parentElement.querySelector(
-                'h4',
-            ).innerText;
+            arrayLightBoxes[currentLightboxIndex].parentElement.querySelector('h4').innerText;
     });
 
     //ICI VIENT LE BOUTON PREV
@@ -233,7 +229,6 @@ const lightboxInit = () => {
         // SI VIDEO ->
         const videoElement = arrayLightBoxes[currentLightboxIndex].querySelector('video');
 
-        // -----
         //On affiche
         console.log('getting image Element ->', { imageElement });
         if (imageElement) {
@@ -259,9 +254,7 @@ const lightboxInit = () => {
 
         //affichage du titre de chaque image
         document.getElementById('lightbox_name').innerText =
-            arrayLightBoxes[currentLightboxIndex].parentElement.querySelector(
-                'h4',
-            ).innerText;
+            arrayLightBoxes[currentLightboxIndex].parentElement.querySelector('h4').innerText;
     });
 };
 
