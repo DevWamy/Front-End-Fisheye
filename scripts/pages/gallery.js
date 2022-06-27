@@ -8,6 +8,13 @@ const getMedias = async () => {
     //On retourne le tableau media qui se trouve dans medias
     return { medias: [...media] };
 };
+//TRI //
+//On selectionne nos trois options
+const currentOpt = document.querySelector('.currentOpt');
+const option1 = document.querySelector('.opt1');
+const option2 = document.querySelector('.opt2');
+//On garde la valeur de l'option actuelle
+let valKeeper = currentOpt.innerText;
 //On recupère tous les éléments liens (sur lesquels on clique pour le tri)
 const menuElements = document.querySelectorAll('.menu_deroulant a');
 //Pour chachun d'eux
@@ -18,16 +25,11 @@ menuElements.forEach((element) => {
         e.preventDefault();
         //On récupère l'élément qui s'affiche sur la page dans une constante
         const label = element.innerText;
-        //Pour avoir le 1er element de menu_deroulant
-        const firstElement = document.querySelector('.menu_deroulant a:first-child');
         //On remplace le 1er élement par le label
-        firstElement.innerText = label;
-        console.log(label);
-        /*//Pour avoir le 2eme element de menu_deroulant
-        const secondElement = document.querySelector('.menu_deroulant a:last-child');
-        //On remplace le 2eme élement par le label
-        secondElement.innerText = label;
-        console.log(label);*/
+        currentOpt.innerText = element.innerText;
+        element.innerText = valKeeper;
+        valKeeper = currentOpt.innerText;
+
         //On récupère ce qui se trouve dans la galerie du photographe et on le met dans une constante
         const photographGalery = document.querySelector('.photograph_galery');
         //On vide la liste des médias
@@ -35,14 +37,14 @@ menuElements.forEach((element) => {
         //On récupère de nouveau la liste des médias
         const { medias } = await getMedias();
         //Si l'élément est de type likes
-        if (element.dataset.type === 'likes') {
+        if (currentOpt.innerText === 'Popularité') {
             //Alors on tri par popularité
             medias.sort((a, b) => {
                 return a.likes - b.likes;
             });
         }
         //Si l'élément est de type date
-        else if (element.dataset.type === 'date') {
+        else if (currentOpt.innerText === 'Date') {
             //Alors on tri par date
             medias.sort((a, b) => {
                 return new Date(a.date) - new Date(b.date);
@@ -266,27 +268,10 @@ const lightboxInit = () => {
 const initGalery = async () => {
     // Récupère les medias des photographes
     const { medias } = await getMedias();
-    /*
-    //Tri par popularité
-    console.log(
-        medias.sort((a, b) => {
-            return a.likes - b.likes;
-        }),
-    );
-  
-    //Tri par date
-    console.log(medias.sort((a,b) => {
-      return new Date(a.date) - new Date(b.date);
-    }))
 
-    //Tri par titre
-    console.log(medias.sort((a,b) => {
-      return a.title.localeCompare(b.title)
-    }))*/
     //On affiche les medias
     photographGaleryDisplay(medias);
     //On initialise la lightbox
     lightboxInit();
 };
-
 initGalery();
