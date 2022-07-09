@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="fr">
   <head>
-    <link href="css/style.css" rel="stylesheet" type="text/css" />
     <meta charset="utf-8">
     <link rel="icon" type="image/png" href="assets/favicon.png">
     <link href="https://fonts.googleapis.com/css?family=DM+Sans&display=swap" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet" type="text/css" />
     <script src="https://kit.fontawesome.com/f6e970777d.js" crossorigin="anonymous"></script>
     <title>Fisheye - photographe </title>
   </head>
@@ -80,14 +80,14 @@
 
     <!--Lightbox-->
     <section  id= "bigImg" class="lightbox hidden">
-      <button class="lightboxClose">
+      <button class="lightboxClose" tabindex="0">
         <i class="fas fa-times"></i>
       </button>
       <button class="lightboxNext">
-        <i class="fas fa-angle-right"></i>
+        <i class="fas fa-angle-right" tabindex="1"></i>
       </button>
-      <button class="lightboxPrev">
-        <i class="fas fa-angle-left"></i>
+      <button class="lightboxPrev" >
+        <i class="fas fa-angle-left" tabindex="2"></i>
       </button>
       <div class="lightbox_media">
       <!--Display targeted img here-->
@@ -99,7 +99,7 @@
     </section>
     </div>
     <footer>
-      <p><span class="total"></span> <i  class="fa-solid fa-heart"></i><span class="price"></span> €/ jour</p>
+      <p><span class="total"></span><i class="fa-solid fa-heart"></i><span class="price"></span> €/ jour</p>
     </footer>
     <script src="scripts/factories/galeryfactory.js"></script>
     <script src="scripts/pages/photographer.js"></script>

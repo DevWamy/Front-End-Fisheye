@@ -25,17 +25,20 @@ function galeryFactory(data) {
         const h5Page = document.createElement('h5');
 
         //Affichage des likes
-        h5Page.innerHTML = '<span>' + likes + '</span> <i class="fa-solid fa-heart"></i>';
+        h5Page.innerHTML = '<span>' + likes + '</span> <i tabindex="0" class="fa-solid fa-heart"></i>';
 
         if (image) {
             const imgPhoto = document.createElement('img');
             imgPhoto.setAttribute('src', srcMedia);
+            imgPhoto.setAttribute('alt', title);
+            imgPhoto.setAttribute('tabindex', '0');
             divImg.appendChild(imgPhoto);
         } else {
             const vidPhoto = document.createElement('video');
             vidPhoto.setAttribute('type', 'video/mp4');
             vidPhoto.setAttribute('src', srcMedia);
-            vidPhoto.setAttribute('controls', null);
+            vidPhoto.setAttribute('alt', title);
+            vidPhoto.setAttribute('tabindex', '0');
             divImg.appendChild(vidPhoto);
         }
         figureGalery.appendChild(divImg);

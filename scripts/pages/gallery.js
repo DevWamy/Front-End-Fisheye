@@ -129,7 +129,6 @@ const lightboxInit = () => {
     let myLightBoxes = document.querySelectorAll('figure > div');
     // Ici on transforme ce que je vient de recuperer en tableau
     let arrayLightBoxes = Array.from(myLightBoxes);
-    console.log(arrayLightBoxes);
 
     //Au clic, l'event s'affiche dans la console
     const displayLightBox = (event, index) => {
@@ -165,12 +164,17 @@ const lightboxInit = () => {
     closeBtn.addEventListener('click', () => {
         document.querySelector('.lightbox').classList.add('hidden');
     });
+};
 
+const triggerLightboxListeners = () => {
     //ICI VIENT LE BOUTON NEXT
     //La balise de class lightboxNext est la variable nextBtn
     const nextBtn = document.querySelector('.lightboxNext');
-    //Lors du clic sur le bouton suivant, on recupere la source de l'image suivante
-    nextBtn.addEventListener('click', () => {
+    //Lors du clic sur le bouton suivant, on recupere la source de l'image suivante.
+    //Ici on a créé une fonction previous afin de pouvoir s'en resservir.
+    const nextImg = () => {
+        const myLightBoxes = document.querySelectorAll('figure > div');
+        const arrayLightBoxes = Array.from(myLightBoxes);
         currentLightboxIndex += 1;
         //on affiche l'element +1 du tableau des elements lightbox
         if (arrayLightBoxes[currentLightboxIndex] === undefined) {
@@ -211,12 +215,18 @@ const lightboxInit = () => {
         //affichage du titre de chaque image
         document.getElementById('lightbox_name').innerText =
             arrayLightBoxes[currentLightboxIndex].parentElement.querySelector('h4').innerText;
+    };
+    nextBtn.addEventListener('click', () => {
+        nextImg();
     });
 
     //ICI VIENT LE BOUTON PREV
     const prevBtn = document.querySelector('.lightboxPrev');
     //Lors du clic sur le bouton precedent, on recupere la source de l'image precedente
-    prevBtn.addEventListener('click', () => {
+    //Ici on a créé une fonction previous afin de pouvoir s'en resservir.
+    const previousImg = () => {
+        const myLightBoxes = document.querySelectorAll('figure > div');
+        const arrayLightBoxes = Array.from(myLightBoxes);
         //si cet element+1 a pour balise img on recupere la source de cette image
         currentLightboxIndex -= 1;
         if (arrayLightBoxes[currentLightboxIndex] === undefined) {
@@ -255,6 +265,26 @@ const lightboxInit = () => {
         //affichage du titre de chaque image
         document.getElementById('lightbox_name').innerText =
             arrayLightBoxes[currentLightboxIndex].parentElement.querySelector('h4').innerText;
+    };
+    prevBtn.addEventListener('click', () => {
+        previousImg();
+    });
+
+    //On ecoute les events au clavier pour la lightbox.
+    //const img = document.querySelectorAll('figure > div');
+    //console.log(img);
+    document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape' || e.key === 'Esc') {
+            //Si on appuie sur echap, on ferme la modale avec en param l'event.
+            document.querySelector('.lightbox').classList.add('hidden');
+        } else if (e.key === 'ArrowLeft') {
+            previousImg();
+        } else if (e.key === 'ArrowRight') {
+            nextImg();
+        }
+
+        console.log(e.key);
+        //reprendre  right.
     });
 };
 
@@ -266,5 +296,6 @@ const initGalery = async () => {
     photographGaleryDisplay(medias);
     //On initialise la lightbox
     lightboxInit();
+    triggerLightboxListeners();
 };
 initGalery();
