@@ -284,7 +284,6 @@ const triggerLightboxListeners = () => {
         }
 
         console.log(e.key);
-        //reprendre  right.
     });
 };
 
