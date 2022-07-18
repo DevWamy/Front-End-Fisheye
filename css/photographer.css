@@ -51,7 +51,6 @@
 
 .content {
     margin: 5% auto;
-    width: 100%;
     max-width: 669px;
     animation-name: modalopen;
     animation-duration: var(--modal-duration);
@@ -619,7 +618,6 @@ nav > ul > li a:hover {
 }
 
 .photograph_galery {
-    width: 100%;
     display: flex;
     flex-wrap: wrap;
     justify-content: flex-start;
@@ -663,6 +661,10 @@ nav > ul > li a:hover {
     font-weight: normal;
     margin-bottom: 30px;
     margin-top: 5px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    width: 280px;
 }
 
 .photograph_galery figure h5 {
@@ -678,8 +680,9 @@ nav > ul > li a:hover {
 .lightbox {
     position: fixed;
     display: flex;
-    justify-content: space-evenly;
-    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+
     top: 0;
     left: 0;
     width: 100%;
@@ -724,8 +727,7 @@ nav > ul > li a:hover {
 }
 
 .lightboxClose {
-    position: absolute;
-    top: 20px;
+    top: 25px;
     right: 330px;
     z-index: 7;
 }
@@ -744,22 +746,25 @@ nav > ul > li a:hover {
     opacity: 1;
 }
 
+#lightbox_media_name {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+}
+
 #lightbox_name {
-    position: absolute;
-    bottom: -35px;
-    left: 365px;
     color: #911c1c;
     font-size: 24px;
     font-weight: normal;
-    margin-bottom: 30px;
-    margin-top: 5px;
+    position: absolute;
+    top: 625px;
+    left: 375px;
 }
 
 .lightbox_media {
     display: flex;
-    justify-content: center;
-    align-items: center;
     width: 50%;
+    height: 100vh;
 }
 
 .lightbox_media img {
@@ -878,4 +883,8 @@ img {
     margin: auto;
     font-size: 45px;
     color: black;
+}
+
+.d-none {
+    display: none;
 }

@@ -20,39 +20,33 @@
       </div>
       <!--TRI-->
       <nav class="menu"> 
-        <span class="title" tabindex="6">Trier par </span>
+        <span class="title" aria-label="Trier par" tabindex="6">Trier par </span>
         <ul id="menu">
           <li class="menu_deroulant"tabindex="7" aria-roledescription="Liste déroulante permettant de trier les photos.">
-              <a class="currentOpt" tabindex="9">Popularité
+              <a class="currentOpt" aria_label="Popularité" tabindex="9">Popularité
                   <span id="chevron">
                       <i class="fas fa-chevron-up" tabindex="8"></i>
                   </span>
               </a>
               <ul class="sous_menu">
-                  <li><a class="opt1" tabindex="10">Date</a></li>
-                  <li><a class="opt2" tabindex="11">Titre</a></li>
+                  <li><a class="opt1" aria_label="Date" tabindex="10">Date</a></li>
+                  <li><a class="opt2" aria_label="Titre" tabindex="11">Titre</a></li>
               </ul>
           </li>
       </ul>
       </nav>
       <div class="photograph_galery"></div>
     </main>
-    <!--THANKS MODAL-->
-    <div class="bground" id="bgroundClose">
-      <div class="content">
-        <div class="close" id="formClose" tabindex="1" alt="Bouton croix pour fermer la modale">
+    <!--MODAL-->
+    <div class="bground"  id="bgroundClose">
+      <div class="content" id="content">
+        <div class="close" onclick="closeModal()" id="formClose" tabindex="1" alt="Bouton croix pour fermer la modale">
         </div>
-        <div class="content content--close" id="formCloseContent">
-          <a href="index.html" class="close" id="closingMessage"></a>
-          <p>Merci, votre message <br> a bien été transmis</p>
-          <a href="index.html" class="btn-submit button" id="closeForm">Fermer</a>
-        </div>
-				<!--MODAL-->
         <div class="modal-body" id="modalClose">
-          <form class="form" name="reserve" action="#" method="post" aria-label="Contacter le photographer" role="form" tabindex="0">
-            <div class="formData" id="contact" tabindex="0">Contactez-moi <br>
+          <form class="form" name="reserve" action="#" method="post" aria-label="Contacter le photographer" role="form">
+            <div class="formData" id="contact">Contactez-moi <br>
               <div class="name"></div>
-              <label for="first" tabindex="0" autofocus>Prénom</label><br>
+              <label for="first" autofocus>Prénom</label><br>
               <input class="text-control" type="text" id="first" name="first" autocomplete="off" tabindex="0"/><br>
               <p class="errorBtn" id="errorName"></p>
             </div>
@@ -71,7 +65,8 @@
               <textarea class="text-control" id="message" name="message" autocomplete="off"></textarea>
               <p class="errorBtn" id="errorMessage"></p>
             </div>
-            <input class="btn-submit button" type="submit" aria-label="Envoyer le formulaire" id="go-btn" value="Envoyer"/>
+            <!--<input class="btn-submit button" type="submit" aria-label="Envoyer le formulaire" id="go-btn" value="Envoyer" tabindex="0"/>-->
+            <button class="btn-submit button" onclick="validateModal()" aria-label="Send" tabindex="0">Envoyer</button>
             <p class="errorBtn" id="error"></p>
           </form>
         </div>
@@ -89,13 +84,15 @@
       <button class="lightboxPrev" >
         <i class="fas fa-angle-left" tabindex="2"></i>
       </button>
-      <div class="lightbox_media">
-      <!--Display targeted img here-->
-      <img id="targetedImg" src="">
-      <video id="targetedVideo" class="hidden" type="video/mp4" src="" controls>
-      </video>
-      </div>
-      <div id="lightbox_name"></div>
+      <article id="lightbox_media_name">
+        <div class="lightbox_media">
+        <!--Display targeted img here-->
+        <img id="targetedImg" src="">
+        <video id="targetedVideo" class="hidden" type="video/mp4" src="" controls>
+        </video>
+        </div>
+        <div id="lightbox_name"></div>
+      </article>
     </section>
     </div>
     <footer>

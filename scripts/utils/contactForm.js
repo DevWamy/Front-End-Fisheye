@@ -3,14 +3,24 @@ const modalbg = document.querySelector('.bground');
 const modalBtn = document.querySelectorAll('.modal-btn');
 const formData = document.querySelectorAll('.formData');
 
+// fermeture de la modale
+function closeModal() {
+    document.getElementById('bgroundClose').style.display = 'none';
+    document.querySelector('main').style.display = 'block';
+}
+
 // Chargement de l'évènement modal
 modalBtn.forEach((btn) => btn.addEventListener('click', launchModal));
 
 // Chargement du formulaire modal
 function launchModal() {
-    document.getElementById('formCloseContent').style.display = 'none';
+    const form = document.querySelector('form');
+    form.reset();
     document.getElementById('modalClose').style.display = 'block';
     modalbg.style.display = 'block';
+    //document.querySelector('.bground').classList.remove('d-none');
+    //On fait disparaître la scrollbar de la page principale.
+    document.querySelector('main').style.display = 'none';
 }
 
 // Déclaration expressions régulières à des fins de vérifications de champs
@@ -35,6 +45,7 @@ const validateIdentity = (inputName, errorField, errorMessage) => {
         }
     });
 };
+
 validateIdentity(
     'first',
     'errorName',
@@ -46,6 +57,7 @@ validateIdentity(
     'Veuillez entrer 2 caractères minimum, sans chiffres, ni caractères spéciaux pour le champ  nom !',
 );
 
+let emailOk;
 //Vérification de l'email
 document.getElementById('email').addEventListener('input', function () {
     if (regexMail.test(this.value) === false) {
@@ -59,48 +71,45 @@ document.getElementById('email').addEventListener('input', function () {
     } else {
         document.getElementById('errorMail').style.display = 'none';
     }
+
+    emailOk = document.getElementById('email').value;
 });
 
-//Validation des champs soumis
-document.forms['reserve'].addEventListener('submit', function (event) {
-    let error;
-    let valid = true;
+let form = document.querySelector('.form');
+form.addEventListener('click', function (e) {
+    e.preventDefault();
+});
 
-    for (let i = 0; i < this.length; i++) {
-        if (!this[i].value) {
-            error = 'Veuillez renseigner tous les champs';
-            this[i].style.border = '3.2px solid red';
-            valid = false;
-            break;
-        }
-    }
+function validateModal() {
+    let formNom = document.querySelector('#last').value;
+    let formPrenom = document.querySelector('#first').value;
+    let formEmail = document.querySelector('#email').value;
+    let formMessage = document.querySelector('#message').value;
 
-    if (!valid) {
-        event.preventDefault();
-        document.getElementById('error').innerHTML = error;
-        return false;
+    // Je récupere la valeur du champ et l'affiche en console
+    if (
+        formNom.length > 0 &&
+        formPrenom.length > 0 &&
+        formEmail.length > 0 &&
+        formMessage.length > 0 &&
+        formMessage.length != '    '
+    ) {
+        console.log('Nom : ' + formNom);
+        console.log('Prénom : ' + formPrenom);
+        console.log('Email : ' + formEmail);
+        console.log('Message: ' + formMessage);
+
+        closeModal();
+    } else if (
+        formNom.length < 1 ||
+        formPrenom.length < 1 ||
+        formEmail.length < 1 ||
+        formMessage.length < 1 ||
+        formMessage.length != ''
+    ) {
+        document.getElementById('error').innerHTML = 'Veuillez renseigner tous les champs';
+        document.querySelector('.text-control').style.border = '3.2px solid red';
     } else {
-        event.preventDefault();
-        document.getElementById('modalClose').style.display = 'none';
-        document.getElementById('formClose').style.display = 'none';
-        document.getElementById('formCloseContent').style.display = 'flex';
+        closeModal();
     }
-});
-
-//Contournement afin d'éviter l'utilisation de span
-const crossClose = document.getElementById('formClose');
-const formulaireClose = document.getElementById('bgroundClose');
-
-crossClose.addEventListener('click', function () {
-    if (formulaireClose.style.display != 'none') {
-        formulaireClose.style.display = 'none';
-    }
-});
-
-document.getElementById('closeForm').addEventListener('click', function () {
-    document.forms['reserve'].submit();
-});
-
-document.getElementById('closingMessage').addEventListener('click', function () {
-    document.forms['reserve'].submit();
-});
+}

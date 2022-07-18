@@ -20,10 +20,8 @@ let valKeeper = currentOpt.innerText;
 const menuElements = document.querySelectorAll('.menu_deroulant a');
 //Pour chachun d'eux
 menuElements.forEach((element) => {
-    //Lorsque l'on clique sur l'élément
-    element.addEventListener('click', async (e) => {
-        //On retire le comportement de la page par défaut
-        e.preventDefault();
+    //On créé le tri que l'on met dans une fonction
+    const sortElements = async (e) => {
         //On récupère l'élément qui s'affiche sur la page dans une constante
         const label = element.innerText;
         //On remplace le 1er élement par le label
@@ -65,6 +63,17 @@ menuElements.forEach((element) => {
         //On initialise la lightbox
         currentLightboxIndex = 0;
         lightboxInit();
+    };
+
+    //Lorsque l'on clique sur l'élément
+    element.addEventListener('click', () => {
+        sortElements();
+    });
+
+    document.addEventListener('keydown', function (e) {
+        if (e.key === 'Enter') {
+            sortElements();
+        }
     });
 });
 
@@ -156,13 +165,18 @@ const lightboxInit = () => {
     myLightBoxes.forEach((figure, index) => {
         figure.addEventListener('click', (event) => {
             displayLightBox(event, index);
+            //On fait disparaître la scrollbar de la page principale.
+            document.querySelector('main').style.display = 'none';
         });
     });
 
     //BOUTON FERMETURE LIGHTBOX
     const closeBtn = document.querySelector('.lightboxClose');
     closeBtn.addEventListener('click', () => {
+        //On fait disparaître la lightbox.
         document.querySelector('.lightbox').classList.add('hidden');
+        // Ici on affiche de nouveau la scrollbar de la page principale.
+        document.querySelector('main').style.display = 'block';
     });
 };
 
@@ -271,19 +285,16 @@ const triggerLightboxListeners = () => {
     });
 
     //On ecoute les events au clavier pour la lightbox.
-    //const img = document.querySelectorAll('figure > div');
-    //console.log(img);
     document.addEventListener('keydown', function (e) {
         if (e.key === 'Escape' || e.key === 'Esc') {
             //Si on appuie sur echap, on ferme la modale avec en param l'event.
             document.querySelector('.lightbox').classList.add('hidden');
+            document.querySelector('main').style.display = 'block';
         } else if (e.key === 'ArrowLeft') {
             previousImg();
         } else if (e.key === 'ArrowRight') {
             nextImg();
         }
-
-        console.log(e.key);
     });
 };
 
