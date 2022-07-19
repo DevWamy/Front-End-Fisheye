@@ -76,27 +76,27 @@
     <!--Lightbox-->
     <section  id= "bigImg" class="lightbox hidden">
       <button class="lightboxClose" tabindex="0">
-        <i class="fas fa-times"></i>
+        <em class="fas fa-times"></em>
       </button>
       <button class="lightboxNext">
-        <i class="fas fa-angle-right" tabindex="1"></i>
+        <strong class="fas fa-angle-right" tabindex="1"></strong>
       </button>
       <button class="lightboxPrev" >
-        <i class="fas fa-angle-left" tabindex="2"></i>
+        <em class="fas fa-angle-left" tabindex="2"></em>
       </button>
       <article id="lightbox_media_name">
         <div class="lightbox_media">
         <!--Display targeted img here-->
-        <img id="targetedImg" src="">
+        <img id="targetedImg" alt='lightbox' src="">
         <video id="targetedVideo" class="hidden" type="video/mp4" src="" controls>
         </video>
         </div>
-        <div id="lightbox_name"></div>
+        <div id="lightbox_name" aria-label="lightbox_name"></div>
       </article>
     </section>
     </div>
     <footer>
-      <p><span class="total"></span><i class="fa-solid fa-heart"></i><span class="price"></span> €/ jour</p>
+      <p><span class="total"></span><strong class="fa-solid fa-heart"></strong><span class="price"></span> €/ jour</p>
     </footer>
     <script src="scripts/factories/galeryfactory.js"></script>
     <script src="scripts/pages/photographer.js"></script>

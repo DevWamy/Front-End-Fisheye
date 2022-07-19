@@ -25,7 +25,8 @@ function galeryFactory(data) {
         const h5Page = document.createElement('h5');
 
         //Affichage des likes
-        h5Page.innerHTML = '<span>' + likes + '</span> <i tabindex="0" class="fa-solid fa-heart"></i>';
+        h5Page.innerHTML =
+            '<span>' + likes + '</span> <i tabindex="0" aria-label="Likes" class="fa-solid fa-heart"></i>';
 
         if (image) {
             const imgPhoto = document.createElement('img');

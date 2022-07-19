@@ -18,63 +18,63 @@ const option2 = document.querySelector('.opt2');
 let valKeeper = currentOpt.innerText;
 //On recupère tous les éléments liens (sur lesquels on clique pour le tri)
 const menuElements = document.querySelectorAll('.menu_deroulant a');
-//Pour chachun d'eux
+//On créé le tri que l'on met dans une fonction
+const sortElements = async (element) => {
+    //On récupère l'élément qui s'affiche sur la page dans une constante
+    const label = element.innerText;
+    //On remplace le 1er élement par le label
+    currentOpt.innerText = element.innerText;
+    element.innerText = valKeeper;
+    valKeeper = currentOpt.innerText;
+
+    //On récupère ce qui se trouve dans la galerie du photographe et on le met dans une constante
+    const photographGalery = document.querySelector('.photograph_galery');
+    //On vide la liste des médias
+    photographGalery.innerHTML = '';
+    //On récupère de nouveau la liste des médias
+    const { medias } = await getMedias();
+    //Si l'élément est de type likes
+    if (currentOpt.innerText === 'Popularité') {
+        //Alors on tri par popularité
+        medias.sort((a, b) => {
+            return b.likes - a.likes;
+        });
+    }
+    //Si l'élément est de type date
+    else if (currentOpt.innerText === 'Date') {
+        //Alors on tri par date
+        medias.sort((a, b) => {
+            return new Date(a.date) - new Date(b.date);
+        });
+        console.log(medias);
+    }
+    //Si l'élément est de type title
+    else {
+        //Alors on tri par titre
+        medias.sort((a, b) => {
+            return a.title.localeCompare(b.title);
+        });
+    }
+
+    //On affiche les medias
+    photographGaleryDisplay(medias);
+    //On initialise la lightbox
+    currentLightboxIndex = 0;
+    lightboxInit();
+};
+//Pour chacun d'eux
 menuElements.forEach((element) => {
-    //On créé le tri que l'on met dans une fonction
-    const sortElements = async (e) => {
-        //On récupère l'élément qui s'affiche sur la page dans une constante
-        const label = element.innerText;
-        //On remplace le 1er élement par le label
-        currentOpt.innerText = element.innerText;
-        element.innerText = valKeeper;
-        valKeeper = currentOpt.innerText;
-
-        //On récupère ce qui se trouve dans la galerie du photographe et on le met dans une constante
-        const photographGalery = document.querySelector('.photograph_galery');
-        //On vide la liste des médias
-        photographGalery.innerHTML = '';
-        //On récupère de nouveau la liste des médias
-        const { medias } = await getMedias();
-        //Si l'élément est de type likes
-        if (currentOpt.innerText === 'Popularité') {
-            //Alors on tri par popularité
-            medias.sort((a, b) => {
-                return a.likes - b.likes;
-            });
-        }
-        //Si l'élément est de type date
-        else if (currentOpt.innerText === 'Date') {
-            //Alors on tri par date
-            medias.sort((a, b) => {
-                return new Date(a.date) - new Date(b.date);
-            });
-            console.log(medias);
-        }
-        //Si l'élément est de type title
-        else {
-            //Alors on tri par titre
-            medias.sort((a, b) => {
-                return a.title.localeCompare(b.title);
-            });
-        }
-
-        //On affiche les medias
-        photographGaleryDisplay(medias);
-        //On initialise la lightbox
-        currentLightboxIndex = 0;
-        lightboxInit();
-    };
-
     //Lorsque l'on clique sur l'élément
     element.addEventListener('click', () => {
+        //e.preventDefault();
+        sortElements(element);
+    });
+});
+document.addEventListener('keydown', function (e) {
+    if (e.key === 'Enter') {
+        // e.preventDefault();
         sortElements();
-    });
-
-    document.addEventListener('keydown', function (e) {
-        if (e.key === 'Enter') {
-            sortElements();
-        }
-    });
+    }
 });
 
 const searchMedias = new URLSearchParams(window.location.search);
@@ -141,6 +141,8 @@ const lightboxInit = () => {
 
     //Au clic, l'event s'affiche dans la console
     const displayLightBox = (event, index) => {
+        //On fait disparaître la scrollbar de la page principale.
+        document.querySelector('main').style.display = 'none';
         //Ici on récupère la source de l'image
         const imageSrc = event.target.currentSrc;
         //Ici on affiche la source de l'image capturée
@@ -158,15 +160,14 @@ const lightboxInit = () => {
         element.classList.remove('hidden');
         currentLightboxIndex = index;
         //apparition du titre de l'image
-        document.getElementById('lightbox_name').innerText =
-            arrayLightBoxes[currentLightboxIndex].parentElement.querySelector('h4').innerText;
+        const imgTitle = (document.getElementById('lightbox_name').innerText =
+            arrayLightBoxes[currentLightboxIndex].parentElement.querySelector('h4').innerText);
+        imgTitle.setAttribute('aria-label', title);
     };
 
     myLightBoxes.forEach((figure, index) => {
         figure.addEventListener('click', (event) => {
             displayLightBox(event, index);
-            //On fait disparaître la scrollbar de la page principale.
-            document.querySelector('main').style.display = 'none';
         });
     });
 
@@ -204,7 +205,7 @@ const triggerLightboxListeners = () => {
         const videoElement = arrayLightBoxes[currentLightboxIndex].querySelector('video');
 
         //On affiche
-        console.log('getting image Element ->', { imageElement });
+        //console.log('getting image Element ->', { imageElement });
         if (imageElement) {
             //Retrait de la classe hidden sur les images
             document.getElementById('targetedImg').classList.remove('hidden');
