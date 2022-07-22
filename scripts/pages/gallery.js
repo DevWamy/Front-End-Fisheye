@@ -130,12 +130,12 @@ const photographGaleryDisplay = async (medias) => {
     document.querySelector('.name').innerText = document.querySelector('div h1').innerText;
 };
 
-//Lightbox
+//LIGHTBOX
 const lightboxInit = () => {
     // Ici on récupère la section contenant les données qui nous intéressent
     let mediasToGet = document.querySelector('.photograph_galery');
     // On récupère les images dans le tableau
-    let myLightBoxes = document.querySelectorAll('figure > div');
+    let myLightBoxes = document.querySelectorAll('.link');
     // Ici on transforme ce que je vient de recuperer en tableau
     let arrayLightBoxes = Array.from(myLightBoxes);
 
@@ -167,6 +167,7 @@ const lightboxInit = () => {
 
     myLightBoxes.forEach((figure, index) => {
         figure.addEventListener('click', (event) => {
+            event.preventDefault();
             displayLightBox(event, index);
         });
     });

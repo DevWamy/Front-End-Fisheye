@@ -12,8 +12,11 @@ function galeryFactory(data) {
 
     function getUserGaleryDOM() {
         const divImg = document.createElement('div');
+        const a = document.createElement('a');
         const figureGalery = document.createElement('figure');
         figureGalery.classList.add(id);
+        a.classList.add('link');
+        a.appendChild(figureGalery);
 
         const legendGalery = document.createElement('figcaption');
         const legendTitle = document.createElement('div');
@@ -49,7 +52,7 @@ function galeryFactory(data) {
         legendLikes.appendChild(h5Page);
         legendTitle.appendChild(legendLikes);
 
-        return figureGalery;
+        return a;
     }
 
     return { id, photographerId, title, image, video, likes, date, price, srcMedia, getUserGaleryDOM };

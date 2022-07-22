@@ -51,6 +51,7 @@ function photographerFactory(data) {
 
         const imgPage = document.createElement('img');
         imgPage.setAttribute('src', picture);
+        imgPage.setAttribute('alt', name);
 
         articlePage.appendChild(divProfil);
         divProfil.appendChild(h1Page);

@@ -113,3 +113,9 @@ function validateModal() {
         closeModal();
     }
 }
+//Fermeture de la modale au clavier.
+document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' || e.key === 'Esc') {
+        closeModal();
+    }
+});
