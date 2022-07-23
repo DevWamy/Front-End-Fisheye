@@ -10,18 +10,25 @@ function photographerFactory(data) {
 
         const img = document.createElement('img');
         img.setAttribute('src', picture);
+        img.setAttribute('alt', name);
+        img.setAttribute('tabindex', '');
 
         const h2 = document.createElement('h2');
         h2.textContent = name;
+        h2.setAttribute('aria-hidden', true);
 
         const h3 = document.createElement('h3');
         h3.textContent = city + ', ' + country;
+        h3.setAttribute('aria-hidden', true);
 
         const span = document.createElement('span');
         span.textContent = tagline;
+        span.setAttribute('aria-hidden', true);
 
         const p = document.createElement('p');
         p.textContent = price + '€/jour';
+        p.setAttribute('aria-hidden', true);
+
         a.appendChild(article);
         article.appendChild(img);
         article.appendChild(h2);
@@ -52,7 +59,7 @@ function photographerFactory(data) {
         const imgPage = document.createElement('img');
         imgPage.setAttribute('src', picture);
         imgPage.setAttribute('alt', name);
-
+        imgPage.setAttribute('tabindex', '0');
         articlePage.appendChild(divProfil);
         divProfil.appendChild(h1Page);
         divProfil.appendChild(h2Page);

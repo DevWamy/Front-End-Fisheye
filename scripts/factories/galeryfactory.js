@@ -17,6 +17,7 @@ function galeryFactory(data) {
         figureGalery.classList.add(id);
         a.classList.add('link');
         a.appendChild(figureGalery);
+        a.setAttribute('tabindex', '0');
 
         const legendGalery = document.createElement('figcaption');
         const legendTitle = document.createElement('div');
@@ -35,14 +36,12 @@ function galeryFactory(data) {
             const imgPhoto = document.createElement('img');
             imgPhoto.setAttribute('src', srcMedia);
             imgPhoto.setAttribute('alt', title);
-            imgPhoto.setAttribute('tabindex', '0');
             divImg.appendChild(imgPhoto);
         } else {
             const vidPhoto = document.createElement('video');
             vidPhoto.setAttribute('type', 'video/mp4');
             vidPhoto.setAttribute('src', srcMedia);
             vidPhoto.setAttribute('alt', title);
-            vidPhoto.setAttribute('tabindex', '0');
             divImg.appendChild(vidPhoto);
         }
         figureGalery.appendChild(divImg);

@@ -70,12 +70,6 @@ menuElements.forEach((element) => {
         sortElements(element);
     });
 });
-document.addEventListener('keydown', function (e) {
-    if (e.key === 'Enter') {
-        // e.preventDefault();
-        sortElements();
-    }
-});
 
 const searchMedias = new URLSearchParams(window.location.search);
 const identifier = searchMedias.get('id');
@@ -140,17 +134,19 @@ const lightboxInit = () => {
     let arrayLightBoxes = Array.from(myLightBoxes);
 
     //Au clic, l'event s'affiche dans la console
-    const displayLightBox = (event, index) => {
+    const displayLightBox = (figure, index) => {
         //On fait disparaître la scrollbar de la page principale.
         document.querySelector('main').style.display = 'none';
+        const el = figure.querySelector('img') || figure.querySelector('video');
+        const isVideo = figure.querySelector('video');
         //Ici on récupère la source de l'image
-        const imageSrc = event.target.currentSrc;
+        const imageSrc = el.src;
         //Ici on affiche la source de l'image capturée
         const targetedImgFound = document.getElementById('targetedImg');
         // targetedImg -> ID Of targeted image
         targetedImgFound.src = imageSrc;
         //Ici on récupère la source de la video
-        const videoSrc = event.target.currentSrc;
+        const videoSrc = el.src;
         //Ici on affiche la source de la video capturée
         const targetedVideoFound = document.getElementById('targetedVideo');
         // targetedVideo -> ID Of targeted video
@@ -158,17 +154,38 @@ const lightboxInit = () => {
         //Apparition de la lightbox au clic
         const element = document.getElementById('bigImg');
         element.classList.remove('hidden');
+        const targetedVideoElement = document.getElementById('targetedVideo');
+        if (isVideo) {
+            document.getElementById('targetedImg').classList.add('hidden');
+            //On retire la classe hidden de ce qui se trouve sur la vidéo parce quon a besoin que ca s'affiche
+            targetedVideoElement.classList.remove('hidden');
+        } else {
+            document.getElementById('targetedImg').classList.remove('hidden');
+            targetedVideoElement.classList.add('hidden');
+        }
         currentLightboxIndex = index;
         //apparition du titre de l'image
         const imgTitle = (document.getElementById('lightbox_name').innerText =
-            arrayLightBoxes[currentLightboxIndex].parentElement.querySelector('h4').innerText);
-        imgTitle.setAttribute('aria-label', title);
+            figure.querySelector('h4').innerText);
+        imgTitle.setAttribute('aria-label', figure.querySelector('h4').innerText);
     };
 
     myLightBoxes.forEach((figure, index) => {
+        //Quand on clique sur figure,
         figure.addEventListener('click', (event) => {
+            console.log('HERE', event);
+            //Le comportement par défaut est effacé,
             event.preventDefault();
-            displayLightBox(event, index);
+            //Et on affiche lightbox selon les règles.
+            displayLightBox(figure, index);
+        });
+        //Même comportement au clavier avec la touche "entrée".
+        figure.addEventListener('keyup', (e) => {
+            console.log(index);
+            e.preventDefault();
+            if (e.code === 'Enter') {
+                displayLightBox(figure, index);
+            }
         });
     });
 
@@ -228,10 +245,11 @@ const triggerLightboxListeners = () => {
             targetedVideoElement.setAttribute('src', videoElementNewSource);
         }
 
-        //affichage du titre de chaque image
+        //Affichage du titre de chaque image
         document.getElementById('lightbox_name').innerText =
             arrayLightBoxes[currentLightboxIndex].parentElement.querySelector('h4').innerText;
     };
+    //Lorsque l'on clique sur le bouton next, la fonction s'execute.
     nextBtn.addEventListener('click', () => {
         nextImg();
     });
@@ -246,8 +264,8 @@ const triggerLightboxListeners = () => {
         //si cet element+1 a pour balise img on recupere la source de cette image
         currentLightboxIndex -= 1;
         if (arrayLightBoxes[currentLightboxIndex] === undefined) {
-            //Au debut de toutes les images, on retourne à la derniere
-            //si l'element est indefini alors l'index courant vaut la taille du tableau de la ligthbox - 1
+            //Au debut de toutes les images, on retourne à la derniere.
+            //Si l'element est indefini alors l'index courant vaut la taille du tableau de la ligthbox - 1
             currentLightboxIndex = arrayLightBoxes.length - 1;
         }
         const imageElement = arrayLightBoxes[currentLightboxIndex].querySelector('img');
@@ -278,10 +296,11 @@ const triggerLightboxListeners = () => {
             targetedVideoElement.setAttribute('src', videoElementNewSource);
         }
 
-        //affichage du titre de chaque image
+        //Affichage du titre de chaque image
         document.getElementById('lightbox_name').innerText =
             arrayLightBoxes[currentLightboxIndex].parentElement.querySelector('h4').innerText;
     };
+    //Lorsque l'on clique sur le bouton previous, la fonction s'execute.
     prevBtn.addEventListener('click', () => {
         previousImg();
     });
@@ -303,7 +322,6 @@ const triggerLightboxListeners = () => {
 const initGalery = async () => {
     // Récupère les medias des photographes
     const { medias } = await getMedias();
-
     //On affiche les medias
     photographGaleryDisplay(medias);
     //On initialise la lightbox
