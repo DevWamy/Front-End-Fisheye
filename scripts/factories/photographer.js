@@ -11,7 +11,7 @@ function photographerFactory(data) {
         const img = document.createElement('img');
         img.setAttribute('src', picture);
         img.setAttribute('alt', name);
-        img.setAttribute('tabindex', '');
+        img.setAttribute('tabindex', '0');
 
         const h2 = document.createElement('h2');
         h2.textContent = name;

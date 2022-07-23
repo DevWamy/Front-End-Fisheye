@@ -71,9 +71,9 @@ menuElements.forEach((element) => {
     });
 
     //Tri au clavier
-    document.addEventListener('keydown', function (e) {
+    element.addEventListener('keydown', function (e) {
         if (e.key === 'Enter') {
-            //e.preventDefault();
+            element.style.overflow = 'visible';
             sortElements(element);
         }
     });
@@ -175,7 +175,9 @@ const lightboxInit = () => {
         //apparition du titre de l'image
         const imgTitle = (document.getElementById('lightbox_name').innerText =
             figure.querySelector('h4').innerText);
-        imgTitle.setAttribute('aria-label', figure.querySelector('h4').innerText);
+        document
+            .getElementById('lightbox_name')
+            .setAttribute('aria-label', figure.querySelector('h4').innerText);
     };
 
     myLightBoxes.forEach((figure, index) => {
