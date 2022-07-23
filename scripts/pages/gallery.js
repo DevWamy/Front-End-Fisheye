@@ -69,6 +69,14 @@ menuElements.forEach((element) => {
         //e.preventDefault();
         sortElements(element);
     });
+
+    //Tri au clavier
+    document.addEventListener('keydown', function (e) {
+        if (e.key === 'Enter') {
+            //e.preventDefault();
+            sortElements(element);
+        }
+    });
 });
 
 const searchMedias = new URLSearchParams(window.location.search);
