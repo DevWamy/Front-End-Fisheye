@@ -73,7 +73,6 @@ menuElements.forEach((element) => {
     //Tri au clavier
     element.addEventListener('keydown', function (e) {
         if (e.key === 'Enter') {
-            element.style.overflow = 'visible';
             sortElements(element);
         }
     });
@@ -121,9 +120,13 @@ const photographGaleryDisplay = async (medias) => {
 
         //Lorsque l'on clique sur le coeur:
         like.addEventListener('click', (e) => {
+            //On arrête la propagation de l'heritage
             e.stopPropagation();
+            //Et on applique la fonction selon les regles.
             addLikes();
         });
+
+        //Meme fonctionnement mais au clavier
         like.addEventListener('keyup', (e) => {
             e.stopPropagation();
             if (e.code === 'Enter') {
