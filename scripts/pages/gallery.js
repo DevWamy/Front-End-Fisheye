@@ -62,6 +62,7 @@ const sortElements = async (element) => {
     currentLightboxIndex = 0;
     lightboxInit();
 };
+
 //Pour chacun d'eux
 menuElements.forEach((element) => {
     //Lorsque l'on clique sur l'élément
@@ -71,8 +72,10 @@ menuElements.forEach((element) => {
     });
 
     //Tri au clavier
-    element.addEventListener('keydown', function (e) {
+    currentOpt.addEventListener('keydown', function (e) {
+        e.stopPropagation();
         if (e.key === 'Enter') {
+            document.querySelector('.sous_menu').style.display = 'block';
             sortElements(element);
         }
     });
@@ -127,9 +130,10 @@ const photographGaleryDisplay = async (medias) => {
         });
 
         //Meme fonctionnement mais au clavier
-        like.addEventListener('keyup', (e) => {
+        like.addEventListener('keydown', (e) => {
             e.stopPropagation();
-            if (e.code === 'Enter') {
+            console.log(e.code);
+            if (e.code === 'AltLeft') {
                 addLikes();
             }
         });
