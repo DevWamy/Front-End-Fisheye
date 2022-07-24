@@ -101,8 +101,8 @@ const photographGaleryDisplay = async (medias) => {
     photographGalery.querySelectorAll('h5').forEach((like) => {
         //On recupère tous les spans qui se trouvent dans h5 avec un querySelectorAll
         const spans = photographGalery.querySelectorAll('h5 > span');
-        //Lorsque l'on clique sur le coeur:
-        like.addEventListener('click', () => {
+        //Fonction de likes
+        const addLikes = () => {
             //On incrémente les likes au clic
             numberOfLikes = like.querySelector('span').innerText++;
             //On crée un compteur avec chaque span
@@ -117,6 +117,18 @@ const photographGaleryDisplay = async (medias) => {
             spans.forEach((span) => (total += parseInt(span.textContent, 10)));
             // On affiche la valeur totale  dans le DOM
             document.querySelector('.total').innerText = total;
+        };
+
+        //Lorsque l'on clique sur le coeur:
+        like.addEventListener('click', (e) => {
+            e.stopPropagation();
+            addLikes();
+        });
+        like.addEventListener('keyup', (e) => {
+            e.stopPropagation();
+            if (e.code === 'Enter') {
+                addLikes();
+            }
         });
     });
     //On récupère ce qui se trouve dans le span de h5 dans une constante
